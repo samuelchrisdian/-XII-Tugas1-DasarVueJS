@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 6</title>
+    <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+</head>
+<body>
+    <div id="app">
+        Masukkan nama guru
+        <form v-on:submit.prevent>
+            <input type="text" name="namaGuru" id="namaGuru" @keyup.enter="simpan" v-model="guru">
+            <button type="button" @click="simpan">Simpan</button>
+        </form>
+        <br>
+        <table border:1 style="border-collapse: collapse" v-if="dataGuru.length > 0">
+            <tr>
+                <thead>
+                    <th style="width: 30px;">#</th>
+                    <th style="width: 200px;">Nama Guru</th>
+                </thead>
+            </tr>
+            <tr>
+                <tbody v-for="(guru, index) in dataGuru" :key="index">
+                    <td>{{index+1}}</td>
+                    <td>{{guru}}</td>
+                </tbody>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            methods:{
+                pesan: function(){
+                    alert("Selamat belajar Vue.js! :D")
+                },
+                simpan: function(){
+                    this.dataGuru.push(this.guru);
+                    this.guru = "";
+                }
+            },
+            data:{
+                "dataGuru" : [
+                    {'nama' : 'Arya', 'kelas' : 'XRPL1'},
+                    {'nama' : 'Bella', 'kelas' : 'XRPL2'},
+                    {'nama' : 'Cyntia', 'kelas' : 'XIRPL1'},  
+                    {'nama' : 'Aku', 'kelas' : 'XIRPL2'},
+                    {'nama' : 'Dia', 'kelas' : 'XIIRPL1'},
+                    {'nama' : 'Kamu', 'kelas' : 'XIIRPL2'},
+                ],
+                "guru" : ""
+            },
+        })
+    </script>
+</body>
+</html>
